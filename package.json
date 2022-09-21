@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "\"# Express-basic-CRUD-operations-\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MadhukrishnaNipankar/Express-basic-CRUD-operations-.git"
+  },
+  "author": "Madhukrishna Nipankar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MadhukrishnaNipankar/Express-basic-CRUD-operations-/issues"
+  },
+  "homepage": "https://github.com/MadhukrishnaNipankar/Express-basic-CRUD-operations-#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
