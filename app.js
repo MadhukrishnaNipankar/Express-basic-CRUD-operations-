@@ -63,10 +63,61 @@ const getUserById = (req, res) => {
   });
 };
 
+const deleteUserById = (req, res) => {
+  let userData = dataObject.filter((element) => {
+    if (element._id == req.params.id) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+  let dataString = JSON.stringify(userData);
+  console.log(userData);
+  fs.writeFile(
+    path.join(__dirname, "/database/data.json"),
+    dataString,
+    (err) => {
+      if (!err) {
+        res
+          .status(200)
+          .json({ status: "success", message: "user deleted successfully" });
+      }
+    }
+  );
+};
+
+const updateUserDataById = (req, res) => {
+  let IndexOfObjectToBeUpdated = null;
+  let counter = 0;
+  for (counter = 0; counter < dataObject.length; counter++) {
+    if (dataObject[counter]._id == req.params.id) {
+      IndexOfObjectToBeUpdated = counter;
+      break;
+    }
+  }
+  // replacing the old element with updated one
+  dataObject.splice(IndexOfObjectToBeUpdated, 1, req.body);
+  let dataString = JSON.stringify(dataObject);
+  fs.writeFile(
+    path.join(__dirname, "/database/data.json"),
+    dataString,
+    (err) => {
+      if (!err) {
+        res
+          .status(200)
+          .json({ status: "success", message: "user updated successfully" });
+      }
+    }
+  );
+};
+
+// users apis
 app.get("/api/v1/users", getAllUsers);
-
 app.post("/api/v1/users", createNewUser);
+app.get("/api/v1/users/:id", getUserById);
+app.delete("/api/v1/users/:id", deleteUserById);
+app.patch("/api/v1/users/:id", updateUserDataById);
 
-app.get("/api/v1/users/:id");
+
 
 module.exports = app;
